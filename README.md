@@ -8,4 +8,4 @@ To run any of these, clone to computer and run
 
 If you want to run the test version, use
 
-`rails new <app-name> -T -m ~/path/to/test_template.rb
+`rails new <app-name> -T -m ~/path/to/test_template.rb`
