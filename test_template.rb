@@ -1,37 +1,35 @@
 # test_template.rb
- 
+
 # Includes and configures for rspec testing
- 
+
 # Helpful links:
- 
+
 # Templates doc
 # http://guides.rubyonrails.org/rails_application_templates.html
- 
+
 # Generator docs - in particular section 9
 # http://guides.rubyonrails.org/generators.html
- 
+
 #----------------------------
 ## GEMS
 #----------------------------
-path = File.expand_path File.dirname(__FILE__)
- 
 gsub_file 'Gemfile', "gem 'sqlite3'", ""
- 
+
 gem 'bcrypt'
 gem 'pg'
 gem 'pry-rails'
- 
+
 gem_group :development do
-  gem 'annotate', ">=2.6.0"
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
- 
+
 gem_group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
- 
+
 gem_group :test do
   gem 'capybara'
   gem 'guard-rspec'
@@ -39,12 +37,12 @@ gem_group :test do
   gem 'shoulda-matchers'
   gem 'faker'
 end
- 
+
 #----------------------------
 ## database.yml
 #----------------------------
 old_yml = Regexp.new("^(.*){1}", Regexp::IGNORECASE | Regexp::MULTILINE)
- 
+
 new_yml = <<-NEW
 development:
   adapter: postgresql
@@ -52,14 +50,14 @@ development:
   host: localhost
   pool: 5
   timeout: 5000
- 
+
 test:
   adapter: postgresql
   database: #{@app_name}_test
   host: localhost
   pool: 5
   timeout: 5000
- 
+
 production:
   adapter: postgresql
   database: #{@app_name}_prod
@@ -67,12 +65,12 @@ production:
   pool: 5
   timeout: 5000
 NEW
- 
+
 gsub_file 'config/database.yml', old_yml, new_yml
- 
- 
+
+
 run "bundle install"
- 
+
 #----------------------------
 ## rake
 #----------------------------
@@ -88,7 +86,7 @@ end
 #----------------------------
 generate "rspec:install"
 append_to_file '.rspec', '--format documentation'
- 
+
 inject_into_file './config/application.rb', after: "class Application < Rails::Application\n" do <<-'RUBY'
     config.generators do |g|
     g.test_framework :rspec,
@@ -102,13 +100,13 @@ inject_into_file './config/application.rb', after: "class Application < Rails::A
     end
 RUBY
 end
- 
+
 inject_into_file './spec/spec_helper.rb', after: "RSpec.configure do |config|\n" do
   "  config.include FactoryGirl::Syntax::Methods\n"
 end
- 
+
 run 'mkdir ./spec/factories/'
- 
+
 #----------------------------
 ## git
 #----------------------------
