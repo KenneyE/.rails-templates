@@ -68,7 +68,7 @@ inject_into_file './config/environments/development.rb', after: "DeviseTest::App
 end
 
 inject_into_file './app/views/layouts/application.html.erb', after: "<body>\n" do
-  "  \n<p class="notice"><%= notice %></p>\n<p class="alert"><%= alert %></p>\n"
+  "  \n<p class=\"notice\"><%= notice %></p>\n<p class=\"alert\"><%= alert %></p>\n"
 end
 
 route "root to: 'home#index'"
