@@ -17,7 +17,9 @@ gsub_file 'Gemfile', "gem 'sqlite3'", ""
 gem 'bcrypt'
 gem 'pg'
 gem 'pry-rails'
-gem 'backbone-rails'
+gem 'backbone-on-rails'
+gem 'jbuilder'
+gem 'ejs'
 
 gem_group :development do
   gem 'annotate'
@@ -38,24 +40,25 @@ development:
   pool: 5
   timeout: 5000
 
-# test:
-#   adapter: postgresql
-#   database: #{@app_name}_test
-#   host: localhost
-#   pool: 5
-#   timeout: 5000
-#
-# production:
-#   adapter: postgresql
-#   database: #{@app_name}_prod
-#   host: localhost
-#   pool: 5
-#   timeout: 5000
+test:
+  adapter: postgresql
+  database: #{@app_name}_test
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: #{@app_name}_prod
+  host: localhost
+  pool: 5
+  timeout: 5000
 NEW
 
 gsub_file 'config/database.yml', old_yml, new_yml
 
 run "bundle install"
+
 
 #-------------------
 ## rake
@@ -64,7 +67,11 @@ puts("------------------------------------------------------------------")
 puts("------------------------------------------------------------------")
 rake("db:create:all") if yes?("Create DB? ('y' only if psql is running):")
 
-generate "backbone:install"
+#----------------------------
+## Backbone
+#----------------------------
+generate "backbone:install --javascript"
+generate "backbone:scaffold #{@app_name} --javascript"
 
 #-------------------
 ## git

@@ -19,7 +19,9 @@ gem 'bcrypt'
 gem 'pg'
 gem 'pry-rails'
 gem 'devise'
-gem 'backbone-rails'
+gem 'backbone-on-rails'
+gem 'jbuilder'
+gem 'ejs'
 
 gem_group :development do
   gem 'annotate'
@@ -100,7 +102,12 @@ if yes?("Create DB? ('y' only if psql is running):")
   rake("db:test:prepare")
 end
 
-generate "backbone:install"
+
+#----------------------------
+## Backbone
+#----------------------------
+generate "backbone:install --javascript"
+generate "backbone:scaffold #{@app_name} --javascript"
 
 #----------------------------
 ## Rspec and Factories
