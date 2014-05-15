@@ -1,4 +1,4 @@
-# test_template.rb
+# all-features-template.rb
 
 # Includes and configures for rspec testing
 
@@ -10,37 +10,6 @@
 # Generator docs - in particular section 9
 # http://guides.rubyonrails.org/generators.html
 
-#----------------------------
-## GEMS
-#----------------------------
-gsub_file 'Gemfile', "gem 'sqlite3'", ""
-
-gem 'bcrypt'
-gem 'pg'
-gem 'pry-rails'
-gem 'devise'
-gem 'backbone-on-rails'
-gem 'jbuilder'
-gem 'ejs'
-
-gem_group :development do
-  gem 'annotate'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-end
-
-gem_group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-end
-
-gem_group :test do
-  gem 'capybara'
-  gem 'guard-rspec'
-  gem 'launchy'
-  gem 'shoulda-matchers'
-  gem 'faker'
-end
 
 #----------------------------
 ## database.yml
@@ -72,6 +41,40 @@ NEW
 
 gsub_file 'config/database.yml', old_yml, new_yml
 
+#----------------------------
+## GEMS
+#----------------------------
+gsub_file 'Gemfile', "gem 'sqlite3'", ""
+
+gem 'bcrypt'
+gem 'pg'
+gem 'pry-rails'
+gem 'devise'
+gem 'backbone-on-rails'
+gem 'jbuilder'
+gem 'ejs'
+
+gem 'bootstrap-sass'
+
+
+gem_group :development do
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+gem_group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+gem_group :test do
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'faker'
+end
 
 run "bundle install"
 
@@ -100,6 +103,25 @@ if yes?("Create DB? ('y' only if psql is running):")
   rake("db:create:all")
   rake("db:migrate")
   rake("db:test:prepare")
+end
+
+
+#-------------------
+## bootstrap
+#-------------------
+
+run "mv ./app/assets/stylesheets/application.css ./app/assets/stylesheets/application.css.scss"
+
+append_to_file "./app/assets/stylesheets/application.css.scss", "\n@import \“bootstrap\";\n"
+append_to_file "./app/assets/javascripts/application.js", "\n//= require bootstrap\n"
+header_text = <<-HEADER
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+HEADER
+
+inject_into_file "./app/views/layouts/application.html.erb", after: "</title>\n" do
+  header_text
 end
 
 
