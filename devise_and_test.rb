@@ -128,9 +128,7 @@ run 'mkdir ./spec/factories/'
 ## git
 #----------------------------
 git :init
-append_to_file '.gitignore', '.DS_Store\n'
-append_file '.gitignore', 'config/database.yml\n'
-append_file '.gitignore', '.env\n'
+append_to_file '.gitignore', ".DS_Store\nconfig/database.yml\n.env\n"
 git add: "-A"
 git commit: %Q{ -m 'Initial commit' }
 run "mate ."

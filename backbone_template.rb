@@ -8,24 +8,6 @@
 # Generator docs - in particular section 9
 # http://guides.rubyonrails.org/generators.html
 
-#-------------------
-## GEMS
-#-------------------
-
-gsub_file 'Gemfile', "gem 'sqlite3'", ""
-
-gem 'bcrypt'
-gem 'pg'
-gem 'pry-rails'
-gem 'backbone-on-rails'
-gem 'jbuilder'
-gem 'ejs'
-
-gem_group :development do
-  gem 'annotate'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-end
 
 #-------------------
 ## database.yml
@@ -57,6 +39,27 @@ NEW
 
 gsub_file 'config/database.yml', old_yml, new_yml
 
+
+
+#-------------------
+## GEMS
+#-------------------
+
+gsub_file 'Gemfile', "gem 'sqlite3'", ""
+
+gem 'bcrypt'
+gem 'pg'
+gem 'pry-rails'
+gem 'backbone-on-rails'
+# gem 'jbuilder'
+gem 'ejs'
+
+gem_group :development do
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 run "bundle install"
 
 
@@ -77,9 +80,7 @@ generate "backbone:scaffold #{@app_name} --javascript"
 ## git
 #-------------------
 git :init
-append_to_file '.gitignore', '.DS_Store\n'
-append_file '.gitignore', 'config/database.yml\n'
-append_file '.gitignore', '.env\n'
+append_to_file '.gitignore', ".DS_Store\nconfig/database.yml\n.env\n"
 git add: "-A"
 git commit: %Q{ -m 'Initial commit' }
 run "mate ."

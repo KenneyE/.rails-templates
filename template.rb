@@ -68,9 +68,7 @@ rake("db:create:all") if yes?("Create DB? ('y' only if psql is running):")
 ## git
 #-------------------
 git :init
-append_to_file '.gitignore', '.DS_Store\n'
-append_file '.gitignore', 'config/database.yml\n'
-append_file '.gitignore', '.env\n'
+append_to_file '.gitignore', ".DS_Store\nconfig/database.yml\n.env\n"
 git add: "-A"
 git commit: %Q{ -m 'Initial commit' }
 run "mate ."
