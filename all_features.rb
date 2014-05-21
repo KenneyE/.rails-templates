@@ -112,7 +112,7 @@ end
 
 run "mv ./app/assets/stylesheets/application.css ./app/assets/stylesheets/application.css.scss"
 
-append_to_file "./app/assets/stylesheets/application.css.scss", "\n@import \“bootstrap\";\n"
+append_to_file "./app/assets/stylesheets/application.css.scss", "\n@import \"bootstrap\";\n"
 append_to_file "./app/assets/javascripts/application.js", "\n//= require bootstrap\n"
 header_text = <<-HEADER
   <%= stylesheet_link_tag 'application' %>
