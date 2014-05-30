@@ -84,14 +84,14 @@ Adds gems:
 
 and runs:
 
-rails generate "backbone:install --javascript"
-rails generate "backbone:scaffold #{@app_name} --javascript"
+    rails generate "backbone:install --javascript"
+    rails generate "backbone:scaffold #{@app_name} --javascript"
 
 ### Bootstrap Template
 
 Adds gem `bootstrap-sass` and adds necessary stuff to `./app/assets/stylesheets/application.css.scss`
 
-$ rails new test-app -m ~/.rails-templates/bootstrap_template.rb
+    $ rails new test-app -m ~/.rails-templates/bootstrap_template.rb
 
 
 ### Combo Templates
