@@ -1,7 +1,11 @@
 Rails Templates
 ===============
 
-I've been working on putting together a collection of useful Rails templates to get up and running with certain Rails features.  As nice as all of the available gems are, there is often separate configuration required. The idea here is to give one template to do all configuration for a given set of features.  Here's what we've got so far.
+I've been working on putting together a collection of useful Rails templates to get up and running with certain Rails features.  As nice as all of the available gems are, there is often separate configuration required. The idea here is to give one template to do all configuration for a given set of features.  
+
+The idea here isn't to make creating a new Rails app really fast, because you probably don't do it enough for that to be worthwhile.  It's really so that you can generate and app and be confident that all of the configuration has been taken care of. If you find any bugs, which I'm sure there are, let me know or submit a pull request.
+
+Here's what we've got so far.
 
 ## Usage Examples
 To use these templates, you can either clone the repository to a local directory or use the GitHub URL to the raw text version.  
