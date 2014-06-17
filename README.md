@@ -1,7 +1,7 @@
 Rails Templates
 ===============
 
-I've been working on putting together a collection of useful Rails templates to get up and running with certain Rails features.  As nice as all of the available gems are, there is often separate configuration required. The idea here is to give one template to do all configuration for a given set of features.  
+I've been working on putting together a collection of useful Rails templates to get up and running with certain Rails features.  As nice as all of the available gems are, there is often separate configuration required. The idea here is to give one template to do all configuration for a given set of features.
 
 The idea here isn't to make creating a new Rails app really fast, because you probably don't do it enough for that to be worthwhile.  It's really so that you can generate an app and be confident that all of the configuration has been taken care of. If you find any bugs, which I'm sure there are, let me know or submit a pull request.
 
@@ -10,7 +10,7 @@ Here's what we've got so far.
 ---
 
 ## Usage Examples
-To use these templates, you can either clone the repository to a local directory or use the GitHub URL to the raw text version.  
+To use these templates, you can either clone the repository to a local directory or use the GitHub URL to the raw text version.
 
 ##### Cloning To Local Repo:
 
@@ -89,6 +89,15 @@ and runs:
 
     rails generate "backbone:install --javascript"
     rails generate "backbone:scaffold #{@app_name} --javascript"
+
+### Angular Template
+
+Runs `curl` on angular.js and angular-mocks.js. Moves them to `assets/javascripts` directory:
+
+    $ curl 'https://code.angularjs.org/1.1.5/angular.js' -o 'app/assets/javascripts/angular.js'
+    $ curl 'https://code.angularjs.org/1.1.5/angular-mocks.js' -o 'app/assets/javascripts/angular-mocks.js'
+
+Removes turbolinks and adds `ng-app="<app-name>"` and `<div ng-view>` to application.html.erb.
 
 ### Bootstrap Template
 
